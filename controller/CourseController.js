@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const Course = require('../model/CourseModel');
 
 const createCourse = async(req,res)=>{
-    const {coursename,courselink,displayimage} = req.body;
+    const {coursename,courselink,displayimage,description} = req.body;
     try {
         const existingcourse = await Course.findOne({coursename});
 
@@ -12,7 +12,7 @@ const createCourse = async(req,res)=>{
             return res.status(400).json({message:'Course already exists'})
         }else{
             const hashedPassword = await bcrypt.hash(password,10);
-            const newCourse = new User({coursename,courselink,displayimage});
+            const newCourse = new User({coursename,courselink,displayimage,description});
             await newCourse.save();
             res.status(201).json({message:'Couse created successfully'})
             console.log(newCourse)

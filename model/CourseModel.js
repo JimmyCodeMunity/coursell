@@ -10,6 +10,9 @@ const courseSchema = new mongoose.Schema({
     },
     displayimage:{
         type: String
+    },
+    description:{
+        type: String
     }
 });
 
