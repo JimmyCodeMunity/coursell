@@ -14,7 +14,8 @@ if (process.env.NODE_ENV !== "production") {
     path: "./.env",
   });
 }
-const port = process.env.PORT || 5000;
+const port = 8000;
+// const port = process.env.PORT;
 const dbconnection = process.env.mongoURL;
 
 app.get("/", (req, res) => {
