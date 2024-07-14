@@ -9,18 +9,18 @@ const createCourse = async(req,res)=>{
         const existingcourse = await Course.findOne({coursename});
 
         if(existingcourse){
-            return res.status(400).json('message','Course already exists')
+            return res.status(400).json({message:'Course already exists'})
         }else{
             const hashedPassword = await bcrypt.hash(password,10);
             const newCourse = new User({coursename,courselink,displayimage});
             await newCourse.save();
-            res.status(201).json('message','Couse created successfully')
+            res.status(201).json({message:'Couse created successfully'})
             console.log(newCourse)
         }
         
     } catch (error) {
         console.log(error);
-        res.status(500).json('message','Error creating course')
+        res.status(500).json({message:'Error creating course'})
         
     }
 }
@@ -33,7 +33,7 @@ const getAllCourses = async(req,res) =>{
         res.status(200).json(courses)
     } catch (error) {
         console.log(error);
-        res.status(500).json('message','Error getting courses')
+        res.status(500).json({message:'Error getting courses'})
     }
 }
 

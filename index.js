@@ -8,6 +8,7 @@ const courseRoute = require('./routes/CourseRoute');
 const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({
