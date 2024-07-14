@@ -36,4 +36,25 @@ const getAllCourses = async(req,res) =>{
     }
 }
 
-module.exports = {createCourse,getAllCourses};
+const getCourseById = async (req, res) => {
+    try {
+      // Get the ID from the request parameters
+      const { id } = req.params;
+  
+      // Find the user by ID
+      const course = await Course.findById(id);
+  
+      // If the user is not found, return a 404 response
+      if (!course) {
+        return res.status(404).json({ message: 'User not found with the provided ID' });
+      }
+  
+      // If the user is found, return the user data
+      res.status(200).json(course);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  };
+
+module.exports = {createCourse,getAllCourses,getCourseById};
