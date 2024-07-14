@@ -7,9 +7,9 @@ router.use(express.json());
 router.use(express.urlencoded({ extended:false}));
 
 
-router.get('allcourses',getAllCourses)
+router.get('/allcourses',getAllCourses)
 
-router.post('addcourse',createCourse)
+router.post('/addcourse',createCourse)
 
 
 module.exports = router;
