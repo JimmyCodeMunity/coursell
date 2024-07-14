@@ -16,7 +16,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 const port = 8000;
 // const port = process.env.PORT;
-const dbconnection = process.env.mongoURL;
+// const dbconnection = process.env.mongoURL;
+const dbconnection = "mongodb+srv://devjimin02:Ghost02@coursell.p8r2rmj.mongodb.net/?retryWrites=true&w=majority&appName=coursell"
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
