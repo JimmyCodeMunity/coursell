@@ -20,7 +20,7 @@ const createUser = async(req,res)=>{
         
     } catch (error) {
         console.log(error);
-        res.status(500).json('message','Error creating user')
+        res.status(500).json({message:'Error creating user'})
         
     }
 }
@@ -32,7 +32,7 @@ const Login = async(req,res) =>{
         const user = await User.findOne({email});
 
         if(!user){
-            return res.status(400).json('message','User not found')
+            return res.status(400).json({message:'User not found'})
         }
 
         const isMatch = await bcrypt.compare(password,user.password);
@@ -41,7 +41,7 @@ const Login = async(req,res) =>{
             return res.status(400).json({message:'Invalid password'})
         }
 
-        res.json('message','User logged in successfully')
+        res.json({message:'User logged in successfully'})
         
     } catch (error) {
         console.log(error);
