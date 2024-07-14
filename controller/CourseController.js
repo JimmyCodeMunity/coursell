@@ -11,8 +11,7 @@ const createCourse = async(req,res)=>{
         if(existingcourse){
             return res.status(400).json({message:'Course already exists'})
         }else{
-            const hashedPassword = await bcrypt.hash(password,10);
-            const newCourse = new User({coursename,courselink,displayimage,description});
+            const newCourse = new Course({coursename,courselink,displayimage,description});
             await newCourse.save();
             res.status(201).json({message:'Couse created successfully'})
             console.log(newCourse)
