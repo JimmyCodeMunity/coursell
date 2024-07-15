@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../model/UserModel');
 const bcrypt = require('bcryptjs');
+const jwt = require("jsonwebtoken");
 
 const createUser = async(req,res)=>{
     const {username,email,password} = req.body;
@@ -41,7 +42,11 @@ const Login = async(req,res) =>{
             return res.status(400).json({message:'Invalid password'})
         }
 
-        res.json({message:'User logged in successfully'})
+        // res.status(200).json(user)
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+            expiresIn: 7,
+          });
+          res.status(200).json({ user: user, token: token });
         
     } catch (error) {
         console.log(error);
