@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const User = require('../model/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const JWT_SECRET = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 
 const createUser = async(req,res)=>{
     const {username,email,password} = req.body;
@@ -43,7 +44,7 @@ const Login = async(req,res) =>{
         }
 
         // res.status(200).json(user)
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
             expiresIn: 7,
           });
           res.status(200).json({ user: user, token: token });
